@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function Navbar() {
 
@@ -11,16 +12,18 @@ function Navbar() {
 
     return(
         <>
-            <nav class="bg-blue-600 text-white p-4">
+            <nav class="bg-sky-950 text-white p-4 font-inter">
                 <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                     
                     <a href="#" class="text-2xl font-bold">MinhaLogo</a>
                     
                     <ul class="hidden md:flex space-x-6">
-                        <li><a href="#home" class="hover:text-blue-300">Home</a></li>
-                        <li><a href="#about" class="hover:text-blue-300">Sobre</a></li>
-                        <li><a href="#services" class="hover:text-blue-300">Serviços</a></li>
-                        <li><a href="#contact" class="hover:text-blue-300">Contato</a></li>
+                        <li>
+                            <Link to="/" class="transition hover:bg-blue-300 p-2 rounded duration-300">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/planilha" class="transition hover:bg-blue-300 p-2 rounded duration-300">Criar Planilha</Link>
+                        </li>
                     </ul>
                     
                     <button id="menu-btn" class="md:hidden focus:outline-none" onClick={changeMenu}>
@@ -31,12 +34,14 @@ function Navbar() {
                 </div>
 
                 {showMenu && (
-                    <div id="mobile-menu">
-                        <ul class="flex flex-col space-y-4 px-4 pb-4 bg-blue-700">
-                            <li><a href="#home" class="hover:text-blue-300">Home</a></li>
-                            <li><a href="#about" class="hover:text-blue-300">Sobre</a></li>
-                            <li><a href="#services" class="hover:text-blue-300">Serviços</a></li>
-                            <li><a href="#contact" class="hover:text-blue-300">Contato</a></li>
+                    <div id="mobile-menu" className={`transition-all duration-1000 opacity-0 max-h-0 overflow-hidden ${showMenu ? 'opacity-100 max-h-[500px]' : ''}`}>
+                        <ul class="flex flex-col space-y-4 p-4 bg-sky-900">
+                            <li>
+                                <Link to="/" class="hover:bg-blue-300">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/planilha" class="hover:bg-blue-300">Criar Planilha</Link>
+                            </li>
                         </ul>
                     </div>
                 )}
