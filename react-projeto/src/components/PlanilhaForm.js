@@ -8,6 +8,8 @@ function PlanilhaForm() {
     })
     const [treinos, setTreinos] = useState([])
     const [exercicioAtual, setExercicioAtual] = useState("")
+    const [series, setSeries] = useState("")
+    const [reps, setReps] = useState("")
 
     function addTreino() {
         setTreinos([...treinos, treinoAtual])
@@ -16,14 +18,21 @@ function PlanilhaForm() {
     function addExercicio(key) {
         let treinos_temp = treinos
 
-        console.log(treinos_temp)
-
         for( let i = 0 ; i < treinos.length ; i++ ) {
-            if(treinos[i]["treino_letter"] === key) {
-                treinos_temp[i]["exercicios"] = [...treinos_temp[i]["exercicios"], exercicioAtual]
-                console.log(treinos_temp)
+            if(treinos[i]["treino_letter"] === key && exercicioAtual.length !== 0
+                && series.length !== 0 && reps.length !== 0
+            ) {
+                treinos_temp[i]["exercicios"] = [...treinos_temp[i]["exercicios"], {
+                    exercicio: exercicioAtual,
+                    series: series,
+                    repeticoes: reps
+                }]
+                setTreinos(treinos_temp)
+                console.log(treinos)
             }
         }
+
+        console.log(treinos)
     }
 
     return(
@@ -67,11 +76,13 @@ function PlanilhaForm() {
                             type="number"
                             class="p-2 border rounded-md"
                             placeholder="Séries"
+                            onChange={(e) => {setSeries(e.target.value)}}
                             />
                             <input
                             type="number"
                             class="p-2 border rounded-md"
                             placeholder="Repetições"
+                            onChange={(e) => {setReps(e.target.value)}}
                             />
                         </div>
                         <button onClick={() => {
@@ -88,7 +99,8 @@ function PlanilhaForm() {
                         {
                             treino.exercicios.map( (exercicio) => {
                                 return <li key={exercicio.id} class="">
-                                        <p>{exercicio}</p>
+                                        <p>{exercicio.exercicio} - {exercicio.series} Séries - {exercicio.repeticoes} Repetições
+                                        </p>
                                     </li>
                             } )
                         }
