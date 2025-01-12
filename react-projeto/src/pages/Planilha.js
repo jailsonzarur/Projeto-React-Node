@@ -1,10 +1,11 @@
+import PlanilhaForm from "../components/PlanilhaForm"
 import Container from "../components/utils/Container"
 
 function Planilha() {
     return(
         <>
             <Container>
-                <h1>Planilha</h1>
+                <PlanilhaForm/>
             </Container>
         </>
     )

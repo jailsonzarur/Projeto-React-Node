@@ -15,7 +15,7 @@ function Navbar() {
             <nav class="bg-sky-950 text-white p-4 font-inter">
                 <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                     
-                    <a href="#" class="text-2xl font-bold">MinhaLogo</a>
+                    <a href="/" class="text-2xl font-bold">MinhaLogo</a>
                     
                     <ul class="hidden md:flex space-x-6">
                         <li>
