@@ -7,9 +7,23 @@ function PlanilhaForm() {
         exercicios: []
     })
     const [treinos, setTreinos] = useState([])
+    const [exercicioAtual, setExercicioAtual] = useState("")
 
     function addTreino() {
         setTreinos([...treinos, treinoAtual])
+    }
+
+    function addExercicio(key) {
+        let treinos_temp = treinos
+
+        console.log(treinos_temp)
+
+        for( let i = 0 ; i < treinos.length ; i++ ) {
+            if(treinos[i]["treino_letter"] === key) {
+                treinos_temp[i]["exercicios"] = [...treinos_temp[i]["exercicios"], exercicioAtual]
+                console.log(treinos_temp)
+            }
+        }
     }
 
     return(
@@ -23,10 +37,12 @@ function PlanilhaForm() {
                     type="text"
                     class="flex-1 px-4 py-2 border rounded-md"
                     placeholder="Digite o nome do treino (ex: A)"
-                    onChange={(e) => {setTreinoAtual({
-                        treino_letter: e.target.value.toUpperCase(),
-                        exercicios: []
-                    })}}
+                    onChange={(e) => {
+                        setTreinoAtual({
+                            treino_letter: e.target.value.toUpperCase(),
+                            exercicios: []
+                        })
+                    }}
                 />
                 <button onClick={addTreino} class="px-6 py-2 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700">
                     Adicionar Treino
@@ -45,6 +61,7 @@ function PlanilhaForm() {
                             type="text"
                             class="p-2 border rounded-md"
                             placeholder="Nome do exercício"
+                            onChange={(e) => {setExercicioAtual(e.target.value)}}
                             />
                             <input
                             type="number"
@@ -57,18 +74,25 @@ function PlanilhaForm() {
                             placeholder="Repetições"
                             />
                         </div>
-                        <button class="mt-4 px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700">
+                        <button onClick={() => {
+                            addExercicio(treino.treino_letter)
+                            setExercicioAtual("")
+                        }
+                        } class="mt-4 px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700">
                             Adicionar Exercício
                         </button>
                         </div>
-
-                        <div>
+                        
                         <h3 class="text-lg font-medium mb-2">Exercícios:</h3>
-                        <ul class="list-disc pl-6 space-y-2">
-                            <li>Agachamento - 4 séries x 12 repetições</li>
-                            <li>Supino - 3 séries x 10 repetições</li>
+                        <ul class="list-disc ml-4">
+                        {
+                            treino.exercicios.map( (exercicio) => {
+                                return <li key={exercicio.id} class="">
+                                        <p>{exercicio}</p>
+                                    </li>
+                            } )
+                        }
                         </ul>
-                        </div>
                     </div>
                 } )
             }
