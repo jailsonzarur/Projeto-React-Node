@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import Planilha from "./pages/Planilha";
 import Footer from "./components/layout/Footer";
+import ContainerScreen from "./components/utils/ContainerScreen";
 
 function App() {
   return (
@@ -11,12 +12,14 @@ function App() {
       v7_relativeSplatPath: true,
     }}>
       <Navbar/>
-      <Routes>
-        <Route exact path="/" element={<Home/>}>
-        </Route>
-        <Route exact path="/planilha" element={<Planilha/>}>
-        </Route>
-      </Routes>
+      <ContainerScreen>
+        <Routes>
+          <Route exact path="/" element={<Home/>}>
+          </Route>
+          <Route exact path="/planilha" element={<Planilha/>}>
+          </Route>
+        </Routes>
+      </ContainerScreen>
       <Footer/>
     </Router>
   )

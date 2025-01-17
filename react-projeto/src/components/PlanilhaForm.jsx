@@ -36,7 +36,7 @@ function PlanilhaForm() {
     }
 
     return(
-        <div className="p-6 max-w-screen-lg mx-auto bg-gray-100 rounded-md shadow-lg mt-4 font-inter">
+        <div className="p-6 max-w-screen-lg mx-auto bg-gray-100 rounded-md shadow-lg mt-4 mb-4 font-inter">
             <h1 className="text-2xl font-bold text-center mb-6">Criar Planilha de Treino</h1>
 
             <div className="mb-6">
